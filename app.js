@@ -6,34 +6,58 @@ function generateComputerChoice() {
 }
 
 function play(playerChoice) {
+  let winElement = document.getElementById("win");
   let computerChoice = generateComputerChoice();
   //NOTE Both of these access our element
   document.getElementById("playerChoice").innerText = playerChoice;
   document.querySelector("#computerChoice").textContent = computerChoice;
+  let result = "";
 
-  if (playerChoice == "rock") {
-    if (computerChoice == "rock") {
-      console.log("It is a tie!");
-    } else if (computerChoice == "paper") {
-      console.log("You lose!");
+  let textColor = "green";
+  if (playerChoice == computerChoice) {
+    textColor = "yellow";
+    result = "Its a tie!";
+  } else if (playerChoice == "rock") {
+    if (computerChoice == "paper") {
+      result = "You lose!";
+      textColor = "red";
     } else if (computerChoice == "scissors") {
-      console.log("You win!!");
+      result = "You win!!";
     }
   } else if (playerChoice == "paper") {
     if (computerChoice == "rock") {
-      console.log("You Win!!");
-    } else if (computerChoice == "paper") {
-      console.log("It's a tie!");
+      result = "You Win!!";
     } else if (computerChoice == "scissors") {
-      console.log("You lose!!");
+      result = "You lose!!";
+      textColor = "red";
     }
   } else if (playerChoice == "scissors") {
     if (computerChoice == "rock") {
-      console.log("You Lose!!");
+      result = "You Lose!!";
+      textColor = "red";
     } else if (computerChoice == "paper") {
-      console.log("You Win!");
-    } else if (computerChoice == "scissors") {
-      console.log("It's a tie");
+      result = "You Win!";
     }
   }
+  winElement.innerText = result;
+  document.body.style.backgroundColor = "rebeccapurple";
+  winElement.style.color = textColor;
 }
+
+// Math solution
+
+// let choices = ["Rock", "Paper", "Scissors"];
+// let results = ["Win", "Lose", "Draw"];
+
+// function play(pChoice) {
+//   let cChoice = Math.floor(Math.random() * 3);
+//   document.getElementById(
+//     "playerChoice"
+//   ).textContent = `You chose ${choices[pChoice]}\n`;
+//   document.getElementById(
+//     "computerChoice"
+//   ).textContent = `Computer chose ${choices[cChoice]}\n`;
+//   document.getElementById("win").textContent = `You ${
+//     results[(2 + pChoice - cChoice) % 3]
+//   }`;
+// }
