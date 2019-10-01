@@ -1,10 +1,12 @@
 let choices = ["rock", "paper", "scissors"];
 function generateComputerChoice() {
   let index = Math.floor(Math.random() * choices.length);
+  console.log("index", index);
+  return choices[index];
 }
 
 function play(playerChoice) {
-  let computerChoice = "scissors";
+  let computerChoice = generateComputerChoice();
   //NOTE Both of these access our element
   document.getElementById("playerChoice").innerText = playerChoice;
   document.querySelector("#computerChoice").textContent = computerChoice;
